@@ -1,0 +1,256 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "NumberUtils",
+        "directory": "C:\\Users\\ryanp\\Desktop\\se333-demo",
+        "workspaceDir": "C:\\Users\\ryanp\\Desktop\\se333-demo",
+        "sources": [
+            "C:\\Users\\ryanp\\Desktop\\se333-demo\\src\\main\\java"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "C:\\Users\\ryanp\\Desktop\\se333-demo\\target\\classes"
+        ],
+        "out": "C:\\Users\\ryanp\\Desktop\\se333-demo\\target",
+        "classesDir": "C:\\Users\\ryanp\\Desktop\\se333-demo\\target\\classes",
+        "resources": [
+            "C:\\Users\\ryanp\\Desktop\\se333-demo\\src\\main\\resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "-target",
+                "21",
+                "-source",
+                "21",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "mill.testng.TestNGFramework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "C:\\Program Files\\Amazon Corretto\\jdk21.0.4_7",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-engine",
+                    "version": "6.0.3",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-engine",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\platform\\junit-platform-engine\\6.0.3\\junit-platform-engine-6.0.3.jar"
+                        },
+                        {
+                            "name": "junit-platform-engine",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\platform\\junit-platform-engine\\6.0.3\\junit-platform-engine-6.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-api",
+                    "version": "6.0.3",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-api",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\6.0.3\\junit-jupiter-api-6.0.3.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-api\\6.0.3\\junit-jupiter-api-6.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.jupiter",
+                    "name": "junit-jupiter-engine",
+                    "version": "6.0.3",
+                    "artifacts": [
+                        {
+                            "name": "junit-jupiter-engine",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-engine\\6.0.3\\junit-jupiter-engine-6.0.3.jar"
+                        },
+                        {
+                            "name": "junit-jupiter-engine",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\jupiter\\junit-jupiter-engine\\6.0.3\\junit-jupiter-engine-6.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apiguardian",
+                    "name": "apiguardian-api",
+                    "version": "1.1.2",
+                    "artifacts": [
+                        {
+                            "name": "apiguardian-api",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2.jar"
+                        },
+                        {
+                            "name": "apiguardian-api",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\apiguardian\\apiguardian-api\\1.1.2\\apiguardian-api-1.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.assertj",
+                    "name": "assertj-core",
+                    "version": "3.27.7",
+                    "artifacts": [
+                        {
+                            "name": "assertj-core",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\assertj\\assertj-core\\3.27.7\\assertj-core-3.27.7.jar"
+                        },
+                        {
+                            "name": "assertj-core",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\assertj\\assertj-core\\3.27.7\\assertj-core-3.27.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.bytebuddy",
+                    "name": "byte-buddy",
+                    "version": "1.18.3",
+                    "artifacts": [
+                        {
+                            "name": "byte-buddy",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\net\\bytebuddy\\byte-buddy\\1.18.3\\byte-buddy-1.18.3.jar"
+                        },
+                        {
+                            "name": "byte-buddy",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\net\\bytebuddy\\byte-buddy\\1.18.3\\byte-buddy-1.18.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jspecify",
+                    "name": "jspecify",
+                    "version": "1.0.0",
+                    "artifacts": [
+                        {
+                            "name": "jspecify",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\jspecify\\jspecify\\1.0.0\\jspecify-1.0.0.jar"
+                        },
+                        {
+                            "name": "jspecify",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\jspecify\\jspecify\\1.0.0\\jspecify-1.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.opentest4j",
+                    "name": "opentest4j",
+                    "version": "1.3.0",
+                    "artifacts": [
+                        {
+                            "name": "opentest4j",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0.jar"
+                        },
+                        {
+                            "name": "opentest4j",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\opentest4j\\opentest4j\\1.3.0\\opentest4j-1.3.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.junit.platform",
+                    "name": "junit-platform-commons",
+                    "version": "6.0.3",
+                    "artifacts": [
+                        {
+                            "name": "junit-platform-commons",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\6.0.3\\junit-platform-commons-6.0.3.jar"
+                        },
+                        {
+                            "name": "junit-platform-commons",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\ryanp\\.m2\\repository\\org\\junit\\platform\\junit-platform-commons\\6.0.3\\junit-platform-commons-6.0.3-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+2026.05.31 00:14:38 INFO  Started: Metals version 1.6.7 in folders 'C:\Users\ryanp\Desktop\a2-seccomMasada\src' for client Visual Studio Code 1.121.0.
+2026.05.31 00:14:38 INFO  Memory monitor started
+2026.05.31 00:14:40 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.05.31 00:14:40 INFO  no build target found for C:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java. Using fallback presentation compiler.
+2026.05.31 00:14:41 INFO  no build target found for C:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java. Using fallback presentation compiler.
+2026.05.31 00:14:41 WARN  no build tool detected in workspace 'C:\Users\ryanp\Desktop\a2-seccomMasada\src'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2026.05.31 00:14:41 WARN  Build server is not auto-connectable.
+2026.05.31 00:14:42 WARN  no build target for: C:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java
+2026.05.31 00:14:42 INFO  no build target found for C:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java. Using fallback presentation compiler.
+2026.05.31 00:14:44 INFO  time: code lens generation in 2.57s
+2026.05.31 00:14:45 INFO  no build target found for C:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java. Using fallback presentation compiler.
+2026.05.31 00:14:56 INFO  no build target found for c:\Users\ryanp\Desktop\a2-seccomMasada\src\test\java\org\example\NumberUtilsTest.java. Using fallback presentation compiler.
+2026.05.31 00:19:05 INFO  logging to files 

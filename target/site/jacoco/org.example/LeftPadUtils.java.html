@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LeftPadUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">NumberUtils</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">LeftPadUtils.java</span></div><h1>LeftPadUtils.java</h1><pre class="source lang-java linenums">package org.example;
+
+<span class="fc" id="L3">public class LeftPadUtils {</span>
+
+   private static final String SPACE = &quot; &quot;;
+
+   private static boolean isEmpty(final CharSequence cs) {
+<span class="fc bfc" id="L8" title="All 4 branches covered.">       return cs == null || cs.length() == 0;</span>
+   }
+
+   /**
+    * Left pad a String with a specified String.
+    *
+    * Pad to a size of {@code size}.
+    *
+    * @param str  the String to pad out, may be null
+    * @param size  the size to pad to
+    * @param padStr  the String to pad with, null or empty treated as single space
+    * @return left padded String or original String if no padding is necessary,
+    *  {@code null} if null String input
+    */
+   public static String leftPad(final String str, final int size, String padStr) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">       if (str == null) {</span>
+<span class="fc" id="L24">           return null;</span>
+       }
+<span class="fc bfc" id="L26" title="All 2 branches covered.">       if (isEmpty(padStr)) {</span>
+<span class="fc" id="L27">           padStr = SPACE;</span>
+       }
+<span class="fc" id="L29">       final int padLen = padStr.length();</span>
+<span class="fc" id="L30">       final int strLen = str.length();</span>
+<span class="fc" id="L31">       final int pads = size - strLen;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">       if (pads &lt;= 0) {</span>
+<span class="fc" id="L33">           return str; // returns original String when possible</span>
+       }
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">       if (pads == padLen) {</span>
+<span class="fc" id="L37">           return padStr.concat(str);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">       } else if (pads &lt; padLen) {</span>
+<span class="fc" id="L39">           return padStr.substring(0, pads).concat(str);</span>
+       } else {
+<span class="fc" id="L41">           final char[] padding = new char[pads];</span>
+<span class="fc" id="L42">           final char[] padChars = padStr.toCharArray();</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">           for (int i = 0; i &lt; pads; i++) {</span>
+<span class="fc" id="L44">               padding[i] = padChars[i % padLen];</span>
+           }
+<span class="fc" id="L46">           return new String(padding).concat(str);</span>
+       }
+   }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

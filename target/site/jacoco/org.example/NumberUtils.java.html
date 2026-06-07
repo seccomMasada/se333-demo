@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumberUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">NumberUtils</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">NumberUtils.java</span></div><h1>NumberUtils.java</h1><pre class="source lang-java linenums">package org.example;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+<span class="fc" id="L7">public class NumberUtils {</span>
+
+    /**
+     * This method receives two numbers, `left` and `right`, both represented as a list of digits.
+     * It adds these numbers and returns the result also as a list of digits.
+     *
+     * For example, if you want to add the numbers 23 and 42, you would need to create
+     * a (left) list with two elements [2,3] and a (right) list with two elements [4,2].
+     * 23+42 = 65, so the program would produce another list with two elements [6,5]
+     *
+     * [2,3] + [4,2] = [6,5]
+     *
+     * Each element in the left and right lists should be a number from [0-9].
+     * An IllegalArgumentException is thrown in case this pre-condition does not hold.
+     *
+     * @param left  a list containing the left number. Null returns null, empty means 0.
+     * @param right a list containing the right number. Null returns null, empty means 0.
+     * @return the sum of left and right, as a list
+     */
+
+
+    public static List&lt;Integer&gt; add(List&lt;Integer&gt; left, List&lt;Integer&gt; right) {
+        // if any is null, return null
+<span class="fc bfc" id="L30" title="All 4 branches covered.">        if (left == null || right == null)</span>
+<span class="fc" id="L31">            return null;</span>
+
+        // reverse the numbers so that the least significant digit goes to the left.
+<span class="fc" id="L34">        Collections.reverse(left);</span>
+<span class="fc" id="L35">        Collections.reverse(right);</span>
+
+<span class="fc" id="L37">        LinkedList&lt;Integer&gt; result = new LinkedList&lt;&gt;();</span>
+
+        // while there's a digit, keep summing them
+        // if there's carry, take the carry into consideration
+<span class="fc" id="L41">        int carry = 0;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (int i = 0; i &lt; Math.max(left.size(), right.size()); i++) {</span>
+
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            int leftDigit = left.size() &gt; i ? left.get(i) : 0;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            int rightDigit = right.size() &gt; i ? right.get(i) : 0;</span>
+
+<span class="fc bfc" id="L47" title="All 8 branches covered.">            if (leftDigit &lt; 0 || leftDigit &gt; 9 || rightDigit &lt; 0 || rightDigit &gt; 9)</span>
+<span class="fc" id="L48">                throw new IllegalArgumentException();</span>
+
+<span class="fc" id="L50">            int sum = leftDigit + rightDigit + carry;</span>
+
+<span class="fc" id="L52">            result.addFirst(sum % 10);</span>
+<span class="fc" id="L53">            carry = sum / 10;</span>
+        }
+
+        // if there's some leftover carry, add it to the final number
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (carry &gt; 0)</span>
+<span class="fc" id="L58">            result.addFirst(carry);</span>
+
+        // remove leading zeroes from the result
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        while (result.size() &gt; 1 &amp;&amp; result.get(0) == 0)</span>
+<span class="fc" id="L62">            result.remove(0);</span>
+
+        // if the result is empty (0 + 0 = 0), return [0] (agent fix)
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (result.isEmpty())</span>
+<span class="fc" id="L66">            result.add(0);</span>
+
+<span class="fc" id="L68">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
