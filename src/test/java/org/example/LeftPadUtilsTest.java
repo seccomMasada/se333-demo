@@ -1,280 +1,303 @@
 package org.example;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("LeftPadUtils.leftPad() Test Suite")
 class LeftPadUtilsTest {
 
-    // ===== NULL INPUT CASES =====
-    
+    // Null string tests
     @Test
-    @DisplayName("Should return null when input string is null")
-    void testNullInput() {
-        String result = LeftPadUtils.leftPad(null, 5, "x");
-        assertNull(result);
+    void testLeftPadNullString() {
+        assertNull(LeftPadUtils.leftPad(null, 5, "x"));
     }
 
     @Test
-    @DisplayName("Should return null when string is null, regardless of size")
-    void testNullInputVariousSize() {
-        String result = LeftPadUtils.leftPad(null, 0, "x");
-        assertNull(result);
+    void testLeftPadNullStringWithNullPad() {
+        assertNull(LeftPadUtils.leftPad(null, 5, null));
     }
 
     @Test
-    @DisplayName("Should return null when string is null with null padStr")
-    void testNullInputNullPadStr() {
-        String result = LeftPadUtils.leftPad(null, 5, null);
-        assertNull(result);
+    void testLeftPadNullStringWithEmptyPad() {
+        assertNull(LeftPadUtils.leftPad(null, 5, ""));
     }
 
-    // ===== NULL OR EMPTY PADSTR (TREAT AS SPACE) =====
-    
+    // No padding needed tests
     @Test
-    @DisplayName("Should treat null padStr as single space")
-    void testNullPadStr() {
-        String result = LeftPadUtils.leftPad("hi", 5, null);
-        assertEquals("   hi", result);
-    }
-
-    @Test
-    @DisplayName("Should treat empty padStr as single space")
-    void testEmptyPadStr() {
-        String result = LeftPadUtils.leftPad("hi", 5, "");
-        assertEquals("   hi", result);
-    }
-
-    @Test
-    @DisplayName("Should pad with space when padStr is empty string")
-    void testEmptyPadStrVariation() {
-        String result = LeftPadUtils.leftPad("test", 6, "");
-        assertEquals("  test", result);
-    }
-
-    // ===== NO PADDING NEEDED =====
-    
-    @Test
-    @DisplayName("Should return original string when size equals string length")
-    void testNoNeedPaddingExact() {
-        String result = LeftPadUtils.leftPad("hello", 5, "x");
+    void testLeftPadStringLongerThanSize() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, 3, "x");
         assertEquals("hello", result);
     }
 
     @Test
-    @DisplayName("Should return original string when size is less than string length")
-    void testNoNeedPaddingSmaller() {
-        String result = LeftPadUtils.leftPad("hello", 3, "x");
+    void testLeftPadStringEqualToSize() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, 5, "x");
         assertEquals("hello", result);
     }
 
     @Test
-    @DisplayName("Should return original string when size equals 0 and string is empty")
-    void testEmptyStringNoNeed() {
-        String result = LeftPadUtils.leftPad("", 0, "x");
-        assertEquals("", result);
+    void testLeftPadZeroSize() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, 0, "x");
+        assertEquals("hello", result);
     }
 
     @Test
-    @DisplayName("Should return original string when size is significantly smaller")
-    void testPadSmallerThanNeeded() {
-        String result = LeftPadUtils.leftPad("verylongstring", 2, "x");
-        assertEquals("verylongstring", result);
+    void testLeftPadNegativeSize() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, -5, "x");
+        assertEquals("hello", result);
     }
 
-    // ===== EXACT PADDING (PADS == PADLEN) =====
-    
+    // Empty string tests
     @Test
-    @DisplayName("Should pad exactly with single char padStr")
-    void testExactPaddingSingleChar() {
-        String result = LeftPadUtils.leftPad("hi", 3, "x");
-        assertEquals("xhi", result);
-    }
-
-    @Test
-    @DisplayName("Should pad exactly with multi-char padStr")
-    void testExactPaddingMultiChar() {
-        String result = LeftPadUtils.leftPad("hi", 4, "xy");
-        assertEquals("xyhi", result);
-    }
-
-    @Test
-    @DisplayName("Should pad exactly with three-char padStr")
-    void testExactPaddingThreeChar() {
-        String result = LeftPadUtils.leftPad("x", 4, "abc");
-        assertEquals("abcx", result);
-    }
-
-    // ===== PARTIAL PADDING (PADS < PADLEN) =====
-    
-    @Test
-    @DisplayName("Should use substring of padStr when padding is less than padStr length")
-    void testPartialPaddingSingleChar() {
-        String result = LeftPadUtils.leftPad("hi", 3, "xyz");
-        assertEquals("xhi", result);
-    }
-
-    @Test
-    @DisplayName("Should use correct portion of padStr")
-    void testPartialPaddingTwoChars() {
-        String result = LeftPadUtils.leftPad("ab", 4, "wxyz");
-        assertEquals("wxab", result);
-    }
-
-    @Test
-    @DisplayName("Should take first character when padding by 1 from multi-char padStr")
-    void testPartialPaddingOneNeeded() {
-        String result = LeftPadUtils.leftPad("test", 5, "1234");
-        assertEquals("1test", result);
-    }
-
-    // ===== MULTIPLE REPEAT PADDING (PADS > PADLEN) =====
-    
-    @Test
-    @DisplayName("Should repeat single char padStr multiple times")
-    void testMultipleRepeatSingleChar() {
-        String result = LeftPadUtils.leftPad("hi", 6, "x");
-        assertEquals("xxxxhi", result);
-    }
-
-    @Test
-    @DisplayName("Should repeat multi-char padStr correctly")
-    void testMultipleRepeatMultiChar() {
-        String result = LeftPadUtils.leftPad("hi", 7, "ab");
-        // Need 5 padding chars (7 - 2), with pattern "ab" repeating: a(1)b(2)a(3)b(4)a(5) + hi = "ababahi"
-        assertEquals("ababahi", result);
-    }
-
-    @Test
-    @DisplayName("Should repeat padStr using modulo cycling")
-    void testMultipleRepeatWithModulo() {
-        String result = LeftPadUtils.leftPad("x", 8, "abc");
-        assertEquals("abcabcax", result);
-    }
-
-    @Test
-    @DisplayName("Should handle partial last repeat of padStr")
-    void testMultipleRepeatPartialLast() {
-        String result = LeftPadUtils.leftPad("x", 6, "ab");
-        assertEquals("ababax", result);
-    }
-
-    @Test
-    @DisplayName("Should handle large padding with repeating pattern")
-    void testLargePadding() {
-        String result = LeftPadUtils.leftPad("hi", 14, "xy");
-        assertEquals("xyxyxyxyxyxyhi", result);
-    }
-
-    // ===== EMPTY STRING PADDING =====
-    
-    @Test
-    @DisplayName("Should pad empty string to size")
-    void testEmptyStringPadding() {
-        String result = LeftPadUtils.leftPad("", 3, "x");
+    void testLeftPadEmptyString() {
+        String str = "";
+        String result = LeftPadUtils.leftPad(str, 3, "x");
         assertEquals("xxx", result);
     }
 
     @Test
-    @DisplayName("Should pad empty string with multi-char padStr")
-    void testEmptyStringMultiCharPad() {
-        String result = LeftPadUtils.leftPad("", 5, "ab");
-        assertEquals("ababa", result);
+    void testLeftPadEmptyStringWithSpace() {
+        String str = "";
+        String result = LeftPadUtils.leftPad(str, 3, " ");
+        assertEquals("   ", result);
     }
 
+    // Null pad string (should use space)
     @Test
-    @DisplayName("Should pad empty string with space")
-    void testEmptyStringSpacePad() {
-        String result = LeftPadUtils.leftPad("", 4, null);
-        assertEquals("    ", result);
-    }
-
-    // ===== SINGLE CHARACTER STRING =====
-    
-    @Test
-    @DisplayName("Should pad single character string")
-    void testSingleCharPadding() {
-        String result = LeftPadUtils.leftPad("a", 4, "x");
-        assertEquals("xxxa", result);
-    }
-
-    @Test
-    @DisplayName("Should pad single character with multi-char padStr")
-    void testSingleCharMultiCharPad() {
-        String result = LeftPadUtils.leftPad("z", 6, "ab");
-        assertEquals("ababaz", result);
-    }
-
-    // ===== SPECIAL CHARACTERS IN INPUT AND PADSTR =====
-    
-    @Test
-    @DisplayName("Should handle special characters in string")
-    void testSpecialCharsInString() {
-        String result = LeftPadUtils.leftPad("!@#", 6, "x");
-        assertEquals("xxx!@#", result);
-    }
-
-    @Test
-    @DisplayName("Should handle space character in string")
-    void testSpaceInString() {
-        String result = LeftPadUtils.leftPad(" x ", 6, "-");
-        // String " x " has length 3, need 3 padding chars (6-3)
-        assertEquals("--- x ", result);
-    }
-
-    @Test
-    @DisplayName("Should handle space as padStr")
-    void testSpaceAsPadStr() {
-        String result = LeftPadUtils.leftPad("hi", 5, " ");
+    void testLeftPadNullPadString() {
+        String str = "hi";
+        String result = LeftPadUtils.leftPad(str, 5, null);
         assertEquals("   hi", result);
     }
 
+    // Empty pad string (should use space)
     @Test
-    @DisplayName("Should handle digits as padStr")
-    void testDigitsAsPadStr() {
-        String result = LeftPadUtils.leftPad("test", 8, "123");
-        assertEquals("1231test", result);
+    void testLeftPadEmptyPadString() {
+        String str = "hi";
+        String result = LeftPadUtils.leftPad(str, 5, "");
+        assertEquals("   hi", result);
     }
 
-    // ===== COMBINED SCENARIOS =====
-    
+    // Single character pad string
     @Test
-    @DisplayName("Should handle padding to size 0")
-    void testPadToZero() {
-        String result = LeftPadUtils.leftPad("abc", 0, "x");
-        assertEquals("abc", result);
-    }
-
-    @Test
-    @DisplayName("Should handle negative size (treated as <= 0)")
-    void testNegativeSize() {
-        String result = LeftPadUtils.leftPad("abc", -5, "x");
-        assertEquals("abc", result);
-    }
-
-    @Test
-    @DisplayName("Should maintain string content integrity")
-    void testContentIntegrity() {
-        String original = "data";
-        String result = LeftPadUtils.leftPad(original, 10, "-");
-        assertTrue(result.endsWith(original));
-        assertEquals(10, result.length());
-    }
-
-    @Test
-    @DisplayName("Should handle Unicode characters")
-    void testUnicodeCharacters() {
-        String result = LeftPadUtils.leftPad("café", 7, "*");
-        assertEquals("***café", result);
-    }
-
-    @Test
-    @DisplayName("Should preserve original behavior for already-sufficient length")
-    void testOriginalStringPreserved() {
-        String str = "already good";
+    void testLeftPadSingleCharPad() {
+        String str = "hi";
         String result = LeftPadUtils.leftPad(str, 5, "x");
-        assertSame(str, result); // Should be the same object
+        assertEquals("xxxhi", result);
+    }
+
+    // Pad length equals required padding length
+    @Test
+    void testLeftPadLengthEqualsPadding() {
+        String str = "hi";
+        String result = LeftPadUtils.leftPad(str, 5, "abc");
+        assertEquals("abchi", result);  // pads=3, padLen=3, so exactly "abc"
+    }
+
+    // Pad length less than required padding length
+    @Test
+    void testLeftPadLengthLessThanPadding() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, 8, "xy");
+        assertEquals("xyxhello", result);
+    }
+
+    // Pad length greater than required padding length
+    @Test
+    void testLeftPadLengthGreaterThanPadding() {
+        String str = "world";
+        String result = LeftPadUtils.leftPad(str, 7, "abcde");
+        assertEquals("abworld", result);
+    }
+
+    // Multi-character pad string with exact match
+    @Test
+    void testLeftPadMultiCharPadExact() {
+        String str = "test";
+        String result = LeftPadUtils.leftPad(str, 7, "xy");
+        assertEquals("xyxtest", result);  // pads=3, padStr="xy", so xy[0%2]xy[1%2]xy[2%2] = xyx
+    }
+
+    // Multi-character pad string with partial use
+    @Test
+    void testLeftPadMultiCharPadPartial() {
+        String str = "hi";
+        String result = LeftPadUtils.leftPad(str, 6, "abcd");
+        assertEquals("abcdhi", result);  // pads=4, padLen=4, so pads==padLen branch takes substring
+    }
+
+    // Multi-character pad string with repetition
+    @Test
+    void testLeftPadMultiCharPadRepeat() {
+        String str = "a";
+        String result = LeftPadUtils.leftPad(str, 8, "ab");
+        assertEquals("abababaa", result);  // pads=7, padStr="ab", pattern repeats: ab[0%2]ab[1%2]ab[0%2]ab[1%2]ab[0%2]ab[1%2]ab[0%2]
+    }
+
+    // Size = string length + 1
+    @Test
+    void testLeftPadSizeByOne() {
+        String str = "x";
+        String result = LeftPadUtils.leftPad(str, 2, "y");
+        assertEquals("yx", result);
+    }
+
+    // Single character string
+    @Test
+    void testLeftPadSingleCharString() {
+        String str = "a";
+        String result = LeftPadUtils.leftPad(str, 5, "b");
+        assertEquals("bbbba", result);
+    }
+
+    // Long pad string with small required padding
+    @Test
+    void testLeftPadLongPadSmallPadding() {
+        String str = "short";
+        String result = LeftPadUtils.leftPad(str, 6, "verylongpadstring");
+        assertEquals("vshort", result);
+    }
+
+    // Pad with numbers as string
+    @Test
+    void testLeftPadWithNumberPad() {
+        String str = "value";
+        String result = LeftPadUtils.leftPad(str, 8, "0");
+        assertEquals("000value", result);
+    }
+
+    // Pad with special characters
+    @Test
+    void testLeftPadWithSpecialCharPad() {
+        String str = "data";
+        String result = LeftPadUtils.leftPad(str, 7, "-");
+        assertEquals("---data", result);
+    }
+
+    // Pad with space character explicitly
+    @Test
+    void testLeftPadWithSpacePad() {
+        String str = "text";
+        String result = LeftPadUtils.leftPad(str, 7, " ");
+        assertEquals("   text", result);
+    }
+
+    // Large size requirement
+    @Test
+    void testLeftPadLargeSize() {
+        String str = "a";
+        String result = LeftPadUtils.leftPad(str, 100, "x");
+        assertEquals(100, result.length());
+        assertTrue(result.endsWith("a"));
+        assertTrue(result.startsWith("x"));
+    }
+
+    // Unicode characters in string
+    @Test
+    void testLeftPadUnicodeString() {
+        String str = "日本";
+        String result = LeftPadUtils.leftPad(str, 4, "*");
+        assertEquals("**日本", result);
+    }
+
+    // Unicode characters in pad
+    @Test
+    void testLeftPadUnicodePad() {
+        String str = "test";
+        String result = LeftPadUtils.leftPad(str, 6, "·");
+        assertEquals("··test", result);
+    }
+
+    // Mixed pad string
+    @Test
+    void testLeftPadMixedCharsPad() {
+        String str = "go";
+        String result = LeftPadUtils.leftPad(str, 8, "a1b2");
+        assertEquals("a1b2a1go", result);
+    }
+
+    // Exact padding calculation
+    @Test
+    void testLeftPadExactCalculation() {
+        String str = "hi";
+        String result = LeftPadUtils.leftPad(str, 5, "x");
+        assertEquals(5, result.length());
+        assertEquals("xxxhi", result);
+    }
+
+    // Return original string when pads <= 0
+    @Test
+    void testLeftPadReturnOriginalWhenPadsNegative() {
+        String str = "hello";
+        String result = LeftPadUtils.leftPad(str, 3, "x");
+        assertSame(str, result); // Should be same object (returns original)
+    }
+
+    // Whitespace characters
+    @Test
+    void testLeftPadWithWhitespace() {
+        String str = "word";
+        String result = LeftPadUtils.leftPad(str, 8, "\t");
+        assertEquals(8, result.length());
+    }
+
+    // Newline in pad string
+    @Test
+    void testLeftPadWithNewlinePad() {
+        String str = "line";
+        String result = LeftPadUtils.leftPad(str, 6, "\n");
+        assertEquals(6, result.length());
+        assertTrue(result.endsWith("line"));
+    }
+
+    // Very long string, small size (no padding)
+    @Test
+    void testLeftPadVeryLongStringSmallSize() {
+        String str = "this is a very long string";
+        String result = LeftPadUtils.leftPad(str, 5, "x");
+        assertEquals(str, result);
+    }
+
+    // Size = string length exactly with multi-char pad
+    @Test
+    void testLeftPadExactSizeMultiCharPad() {
+        String str = "test";
+        String result = LeftPadUtils.leftPad(str, 4, "abc");
+        assertEquals("test", result);
+    }
+
+    // Repeated pattern verification
+    @Test
+    void testLeftPadRepeatedPatternCorrect() {
+        String str = "end";
+        String result = LeftPadUtils.leftPad(str, 11, "ab");
+        assertEquals("ababababend", result);
+        assertEquals(11, result.length());  // pads=8, filled with modulo pattern: abababab
+    }
+
+    // Test the modulo operation for pad characters
+    @Test
+    void testLeftPadModuloRepetition() {
+        String str = "X";
+        String result = LeftPadUtils.leftPad(str, 6, "123");
+        assertEquals("12312X", result);
+    }
+
+    // Edge case: size = 1, string = empty
+    @Test
+    void testLeftPadSizeOneEmptyString() {
+        String result = LeftPadUtils.leftPad("", 1, "a");
+        assertEquals("a", result);
+    }
+
+    // Edge case: size = 1, string = one character
+    @Test
+    void testLeftPadSizeOneOneCharString() {
+        String result = LeftPadUtils.leftPad("x", 1, "a");
+        assertEquals("x", result);
     }
 }
