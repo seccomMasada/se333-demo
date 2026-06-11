@@ -300,4 +300,11 @@ class LeftPadUtilsTest {
         String result = LeftPadUtils.leftPad("x", 1, "a");
         assertEquals("x", result);
     }
+
+    // Constructor coverage (instantiate the class)
+    @Test
+    void testLeftPadUtilsConstructor() {
+        LeftPadUtils utils = new LeftPadUtils();
+        assertNotNull(utils);
+    }
 }

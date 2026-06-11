@@ -265,4 +265,11 @@ class NumberUtilsTest {
         List<Integer> result = NumberUtils.add(left, right);
         assertEquals(Arrays.asList(1, 2, 3), result);
     }
+
+    // Constructor coverage (instantiate the class)
+    @Test
+    void testNumberUtilsConstructor() {
+        NumberUtils utils = new NumberUtils();
+        assertNotNull(utils);
+    }
 }
