@@ -6,7 +6,7 @@ model: Claude Haiku 4.5 (copilot)
 ## Follow instruction below: ##
 1. Initialize Git (if needed). If the current directory is not already a Git repository, initialize a new Git repository.
 2. Configure Remote Repository.
-    - Add se333-demo as the 'origin' remote.
+    - Add se333-demo (https://github.com/seccomMasada/se333-demo) as the 'origin' remote.
     - If an 'origin' remote already exists, replace it.
 3. Ensure Trunk Branch
     - Ensure the trunk branch is named 'main'.
@@ -16,7 +16,8 @@ model: Claude Haiku 4.5 (copilot)
 5.  Now examine the classes in 'src/main/java/org/example'. For each method, read its specification/Javadoc carefully, and note the documented behavior for normal, edge, and error cases.  
 6. Before writing any tests, list every distinct input category implied by the specification.
     - For example, consider minimum valid values, maximum valid values, null values, empty values, default values, invalid values, etc., for each parameter. 
-        - Then, consider combinations of those categories across multiple parameters. 
+        - Then, consider combinations of those categories across multiple parameters.
+        - Especially pay attention to combinations where ALL parameters are simultaneously special values (both null, empty, zero, etc.), exposing bugs that single-parameter edge cases can often miss.  
 7. Write at least one JUnit 5 test, in 'src/test/java/org/example', for each meaningful category of input and combination. 
     - A test is meaningful if it verifies a distinct behavior or code path not already covered by another test. 
         - If the input combination does not produce a different outcome, trigger a different theoretical branch, or test a different documented behavior, then it is redundant and should be skipped. 
@@ -39,4 +40,3 @@ model: Claude Haiku 4.5 (copilot)
     - Commit any new tests added in this step to the feature branch, with a message describing what new coverage gaps were addressed.
 15. Repeat steps 7-14 until coverage is as close to 100% as reasonably possible.
 16. Open a pull request from 'feature/test-improvements' to 'main', with a summary of changes, bugs found, and final coverage metrics. Do not merge the PR, leave it open for manual review.
-
