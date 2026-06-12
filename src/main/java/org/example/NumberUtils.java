@@ -39,7 +39,8 @@ public class NumberUtils {
         // while there's a digit, keep summing them
         // if there's carry, take the carry into consideration
         int carry = 0;
-        for (int i = 0; i < Math.max(left.size(), right.size()); i++) {
+        int maxSize = Math.max(left.size(), right.size());
+        for (int i = 0; i < maxSize; i++) {
 
             int leftDigit = left.size() > i ? left.get(i) : 0;
             int rightDigit = right.size() > i ? right.get(i) : 0;
@@ -57,9 +58,13 @@ public class NumberUtils {
         if (carry > 0)
             result.addFirst(carry);
 
-        // remove leading zeroes from the result
+        // remove leading zeroes from the result, but keep at least one digit
         while (result.size() > 1 && result.get(0) == 0)
             result.remove(0);
+
+        // if result is empty (both inputs were empty), return [0]
+        if (result.isEmpty())
+            result.add(0);
 
         return result;
     }
