@@ -217,4 +217,57 @@ class NumberUtilsTest {
         List<Integer> result = NumberUtils.add(Arrays.asList(1, 2, 3), Arrays.asList(4, 5, 6));
         assertEquals(Arrays.asList(5, 7, 9), result);
     }
+
+    // ============ Additional Edge Cases for Coverage ============
+
+    @Test
+    @DisplayName("Invalid digit in middle of left list")
+    void testInvalidDigitMiddleLeft() {
+        assertThrows(IllegalArgumentException.class,
+            () -> NumberUtils.add(Arrays.asList(1, 10, 3), Arrays.asList(1, 0)));
+    }
+
+    @Test
+    @DisplayName("Invalid digit in middle of right list")
+    void testInvalidDigitMiddleRight() {
+        assertThrows(IllegalArgumentException.class,
+            () -> NumberUtils.add(Arrays.asList(1, 2), Arrays.asList(1, -1, 3)));
+    }
+
+    @Test
+    @DisplayName("Boundary: minimum valid digit 0")
+    void testMinimumValidDigit() {
+        List<Integer> result = NumberUtils.add(Arrays.asList(0), Arrays.asList(0));
+        assertEquals(Arrays.asList(0), result);
+    }
+
+    @Test
+    @DisplayName("Boundary: maximum valid digit 9")
+    void testMaximumValidDigit() {
+        List<Integer> result = NumberUtils.add(Arrays.asList(9), Arrays.asList(0));
+        assertEquals(Arrays.asList(9), result);
+    }
+
+    @Test
+    @DisplayName("Mix of valid digits across list")
+    void testMixOfValidDigits() {
+        List<Integer> result = NumberUtils.add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                                              Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
+        assertEquals(Arrays.asList(1, 3, 5, 8, 0, 2, 4, 6, 7), result);
+    }
+
+    @Test
+    @DisplayName("Very large carry cascade")
+    void testVeryLargeCarryCascade() {
+        List<Integer> result = NumberUtils.add(Arrays.asList(9, 9, 9, 9, 9, 9, 9, 9),
+                                              Arrays.asList(1));
+        assertEquals(Arrays.asList(1, 0, 0, 0, 0, 0, 0, 0, 0), result);
+    }
+
+    @Test
+    @DisplayName("Single zero in list with other values")
+    void testZeroWithOtherValues() {
+        List<Integer> result = NumberUtils.add(Arrays.asList(1, 0, 1), Arrays.asList(2, 0, 3));
+        assertEquals(Arrays.asList(3, 0, 4), result);
+    }
 }
