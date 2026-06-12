@@ -10,6 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NumberUtilsTest {
 
+    @Test
+    void testConstructor() {
+        new NumberUtils();
+    }
+
     // Test null cases
     @Test
     void testAddLeftNull() {

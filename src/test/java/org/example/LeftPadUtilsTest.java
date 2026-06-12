@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LeftPadUtilsTest {
 
+    @Test
+    void testConstructor() {
+        new LeftPadUtils();
+    }
+
     // Test null input string
     @Test
     void testLeftPadNullString() {
