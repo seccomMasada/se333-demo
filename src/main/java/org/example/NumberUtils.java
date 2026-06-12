@@ -61,10 +61,6 @@ public class NumberUtils {
         while (result.size() > 1 && result.get(0) == 0)
             result.remove(0);
 
-        // if result is empty, both inputs were empty/zero, so return [0]
-        if (result.isEmpty())
-            result.add(0);
-
         return result;
     }
 }
